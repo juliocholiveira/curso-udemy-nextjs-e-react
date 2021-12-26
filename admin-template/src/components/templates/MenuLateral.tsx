@@ -1,7 +1,18 @@
+import { IconHome, IconNotification, IconSetting } from '../icons';
+import MenuItem from './MenuItem';
+
 export default function MenuLateral() {
-  return(
+  return (
     <aside>
-      <h1>Menu Lateral</h1>
+      <ul>
+        <MenuItem url="/" texto="Home" icone={IconHome} />
+        <MenuItem url="/setting" texto="Settings" icone={IconSetting} />
+        <MenuItem
+          url="/notification"
+          texto="Notification"
+          icone={IconNotification}
+        />
+      </ul>
     </aside>
-  )
+  );
 }
