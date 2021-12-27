@@ -1,10 +1,17 @@
-import { IconHome, IconNotification, IconSetting } from '../icons';
+import { IconHome, IconLogout, IconNotification, IconSetting } from '../icons';
+import Logo from './Logo';
 import MenuItem from './MenuItem';
 
 export default function MenuLateral() {
   return (
-    <aside>
-      <ul>
+    <aside className="flex flex-col">
+      <div
+        className={`flex flex-col justify-center items-center bg-gradient-to-r from-indigo-500
+          to-purple-800 w-20 h-20 gra`}
+      >
+        <Logo />
+      </div>
+      <ul className={`flex-grow`}>
         <MenuItem url="/" texto="Home" icone={IconHome} />
         <MenuItem url="/setting" texto="Settings" icone={IconSetting} />
         <MenuItem
@@ -12,6 +19,9 @@ export default function MenuLateral() {
           texto="Notification"
           icone={IconNotification}
         />
+      </ul>
+      <ul>
+        <MenuItem className={`text-red-500`} texto="Sair" icone={IconLogout} />
       </ul>
     </aside>
   );
