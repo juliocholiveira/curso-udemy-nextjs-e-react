@@ -21,7 +21,12 @@ export default function MenuLateral() {
         />
       </ul>
       <ul>
-        <MenuItem className={`text-red-500`} texto="Sair" icone={IconLogout} />
+        <MenuItem
+          className={`text-red-500 hover:bg-red-300 hover:text-white`}
+          texto="Sair"
+          icone={IconLogout}
+          onClick={() => console.log('aqui...')}
+        />
       </ul>
     </aside>
   );
