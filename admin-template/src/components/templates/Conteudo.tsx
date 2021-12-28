@@ -1,9 +1,15 @@
 interface ConteudoProps {
-  children?: any
+  children?: any;
 }
 
-export default function Conteudo(props: ConteudoProps){
-  return(
-    <div>{props.children}</div>
+export default function Conteudo(props: ConteudoProps) {
+  return (
+    <div
+      className={`
+      dark:text-gray-200
+    `}
+    >
+      {props.children}
+    </div>
   );
 }
