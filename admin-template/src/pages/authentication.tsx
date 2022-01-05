@@ -11,9 +11,20 @@ export default function Authentication() {
     else console.log('cadastrar');
   };
 
+  const alteraModo = () => {
+    setModo(modo === 'login' ? 'cadastro' : 'login');
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <div className="w-1/3">
+    <div className="flex items-center justify-center h-screen">
+      <div className="hidden md:block md:w-1/2 lg:w-2/3">
+        <img
+          src={'https://source.unsplash.com/random'}
+          alt="Imagem de autenticação"
+          className="w-full h-screen object-cover"
+        />
+      </div>
+      <div className="w-full m-4 md:w-1/2 lg:w-1/3 ">
         <h1 className={`text-xl font-bold mb-5`}>
           {modo === 'login'
             ? 'Entre com sua conta'
@@ -55,6 +66,17 @@ export default function Authentication() {
         >
           Login com o Google
         </button>
+        <p className="mt-2">
+          {modo === 'login' ? 'Novo por aqui?' : 'Já tem conta?'}
+          <a
+            onClick={alteraModo}
+            className="ml-1 cursor-pointer text-blue-400 hover:text-blue-600 font-semibold"
+          >
+            {modo === 'login'
+              ? 'Clique para se cadastrar.'
+              : 'Clique para fazer login.'}
+          </a>
+        </p>
       </div>
     </div>
   );
