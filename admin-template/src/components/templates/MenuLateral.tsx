@@ -1,8 +1,13 @@
+import route from 'next/router';
 import { IconHome, IconLogout, IconNotification, IconSetting } from '../icons';
 import Logo from './Logo';
 import MenuItem from './MenuItem';
 
 export default function MenuLateral() {
+  const logout = () => {
+    route.push('/authentication');
+  };
+
   return (
     <aside
       className={`
@@ -34,7 +39,7 @@ export default function MenuLateral() {
           `}
           texto="Sair"
           icone={IconLogout}
-          onClick={() => console.log('aqui...')}
+          onClick={logout}
         />
       </ul>
     </aside>

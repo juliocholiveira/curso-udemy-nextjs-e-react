@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import AuthInput from '../components/auth/AuthInput';
 import { IconWarn } from '../components/icons';
+import useAuth from '../data/hook/useAuth';
 
 export default function Authentication() {
   const [erro, setErro] = useState(null);
   const [modo, setModo] = useState<'cadastro' | 'login'>('login');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+
+  const { usuario, loginGoogle } = useAuth();
 
   const submeter = () => {
     if (modo === 'login') {
@@ -79,7 +82,7 @@ export default function Authentication() {
         </button>
         <hr className="my-6" />
         <button
-          onClick={submeter}
+          onClick={loginGoogle}
           className={`
             w-full bg-red-500 hover:bg-red-400 text-white rounded-lg
             px-4 py-3
