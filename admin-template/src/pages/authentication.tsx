@@ -45,7 +45,7 @@ export default function Authentication() {
             : 'Cadastre-se na plataforma'}
         </h1>
         {erro ? (
-          <div className="flex items-center bg-red-300 my-2 p-2 rounded-lg border border-red-500 text-red-500">
+          <div className="flex items-center bg-red-300 my-2 p-2 rounded-lg border border-red-500 text-white">
             {IconWarn()}
             <span className="ml-2">{erro}</span>
           </div>
