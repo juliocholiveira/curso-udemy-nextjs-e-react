@@ -13,11 +13,28 @@ const AuthContext = createContext<AuthContextProps>({});
 export function AuthProvider(props) {
   const [usuario, setUsuario] = useState(null);
 
-  //TODO Função que converte objeto do firebase para o Usuario
+  const usuarioNormalizado = async (usuarioFirebase: firebase.User) => {
+    const token = await usuarioFirebase.getIdToken();
+    return {
+      uid: usuarioFirebase.uid,
+      nome: usuarioFirebase.displayName,
+      email: usuarioFirebase.email,
+      token,
+      provedor: usuarioFirebase.providerData[0].providerId,
+      imagemUrl: usuarioFirebase.photoURL,
+    };
+  };
 
   const loginGoogle = async () => {
-    console.log('login google...');
-    route.push('/');
+    const resp = await firebase
+      .auth()
+      .signInWithPopup(new firebase.auth.GoogleAuthProvider());
+
+    if (resp.user?.email) {
+      const usuario = usuarioNormalizado(resp.user);
+      setUsuario(usuario);
+      route.push('/');
+    }
   };
 
   return (
