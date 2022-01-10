@@ -41,7 +41,7 @@ export default function Authentication() {
           className="w-full h-screen object-cover"
         />
       </div>
-      <div className="w-full m-4 md:w-1/2 lg:w-1/3 ">
+      <div className="w-full m-4 p-6 md:w-1/2 lg:w-1/3 ">
         <h1 className={`text-xl font-bold mb-5`}>
           {modo === 'login'
             ? 'Entre com sua conta'
@@ -74,7 +74,7 @@ export default function Authentication() {
           onClick={submeter}
           className={`
             w-full bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg
-            px-4 py-3 mt-6 
+            px-4 py-3 mt-6
 
         `}
         >
