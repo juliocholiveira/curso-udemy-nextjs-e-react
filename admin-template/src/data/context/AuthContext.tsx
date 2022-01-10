@@ -11,7 +11,7 @@ interface AuthContextProps {
 const AuthContext = createContext<AuthContextProps>({});
 
 export function AuthProvider(props) {
-  const [usuario, setUsuario] = useState(null);
+  const [usuario, setUsuario] = useState<Usuario>(null);
 
   //TODO Função que converte objeto do firebase para o Usuario
 
