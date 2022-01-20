@@ -7,6 +7,7 @@ import Cookies from 'js-cookie';
 interface AuthContextProps {
   usuario?: Usuario;
   loginGoogle?: () => Promise<void>;
+  logout?: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextProps>({});
@@ -28,12 +29,27 @@ export function AuthProvider(props) {
   };
 
   const loginGoogle = async () => {
-    const resp = await firebase
-      .auth()
-      .signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    try {
+      setCarregando(true);
+      const resp = await firebase
+        .auth()
+        .signInWithPopup(new firebase.auth.GoogleAuthProvider());
 
-    configurarSessao(resp.user);
-    route.push('/');
+      configurarSessao(resp.user);
+      route.push('/');
+    } finally {
+      setCarregando(false);
+    }
+  };
+
+  const logout = async () => {
+    try {
+      setCarregando(true);
+      await firebase.auth().signOut();
+      await configurarSessao(null);
+    } finally {
+      setCarregando(false);
+    }
   };
 
   const gerenciarCookie = (logado: boolean) => {
@@ -63,8 +79,10 @@ export function AuthProvider(props) {
 
   // listen for Firebase state change
   useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged(configurarSessao);
-    return () => unsubscribe();
+    if (Cookies.get('admin-template-cod3r-auth')) {
+      const unsubscribe = firebase.auth().onAuthStateChanged(configurarSessao);
+      return () => unsubscribe();
+    }
   }, []);
 
   return (
@@ -72,6 +90,7 @@ export function AuthProvider(props) {
       value={{
         usuario,
         loginGoogle,
+        logout,
       }}
     >
       {props.children}
