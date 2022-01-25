@@ -6,10 +6,10 @@ export default function Avatar() {
   return (
     <div>
       <Link href="/profile">
-        {usuario ? (
+        {usuario.imagemUrl ? (
           <img
             className="w-10 h-10 ml-2 rounded-full cursor-pointer"
-            src={usuario?.imagemUrl}
+            src={usuario.imagemUrl}
             alt="Avatar"
           />
         ) : (

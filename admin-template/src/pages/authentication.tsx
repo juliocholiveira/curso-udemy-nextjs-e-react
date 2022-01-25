@@ -3,21 +3,29 @@ import AuthInput from '../components/auth/AuthInput';
 import { IconWarn } from '../components/icons';
 import useAuth from '../data/hook/useAuth';
 
+type TipoLogin = 'EmailSenha' | 'Google';
+
 export default function Authentication() {
   const [erro, setErro] = useState(null);
   const [modo, setModo] = useState<'cadastro' | 'login'>('login');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
-  const { usuario, loginGoogle } = useAuth();
+  const { signUp, login, loginGoogle } = useAuth();
 
-  const submeter = () => {
-    if (modo === 'login') {
-      console.log('login');
-      exibirErro('Erro ao fazer login.', 2);
-    } else {
-      console.log('cadastrar');
-      exibirErro('Erro ao fazer cadastro.');
+  const submeter = async (tipo: TipoLogin) => {
+    try {
+      if (modo === 'login') {
+        if (tipo === 'EmailSenha') {
+          await login(email, senha);
+        } else {
+          await loginGoogle();
+        }
+      } else {
+        await signUp(email, senha);
+      }
+    } catch (e) {
+      exibirErro(e?.message || 'Erro desconhecido!', 5);
     }
   };
 
@@ -71,7 +79,7 @@ export default function Authentication() {
           onChangeMe={setSenha}
         />
         <button
-          onClick={submeter}
+          onClick={() => submeter('EmailSenha')}
           className={`
             w-full bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg
             px-4 py-3 mt-6
@@ -82,7 +90,7 @@ export default function Authentication() {
         </button>
         <hr className="my-6" />
         <button
-          onClick={loginGoogle}
+          onClick={() => submeter('Google')}
           className={`
             w-full bg-red-500 hover:bg-red-400 text-white rounded-lg
             px-4 py-3
