@@ -1,6 +1,12 @@
 import route from 'next/router';
 import useAuth from '../../data/hook/useAuth';
-import { IconHome, IconLogout, IconNotification, IconSetting } from '../icons';
+import {
+  IconCrud,
+  IconHome,
+  IconLogout,
+  IconNotification,
+  IconSetting,
+} from '../icons';
 import Logo from './Logo';
 import MenuItem from './MenuItem';
 
@@ -23,6 +29,7 @@ export default function MenuLateral() {
       </div>
       <ul className={`flex-grow`}>
         <MenuItem url="/" texto="Home" icone={IconHome} />
+        <MenuItem url="/crud" texto="CRUD" icone={IconCrud} />
         <MenuItem url="/setting" texto="Settings" icone={IconSetting} />
         <MenuItem
           url="/notification"
