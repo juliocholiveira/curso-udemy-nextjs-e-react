@@ -1,5 +1,6 @@
 import Tabela from '../components/Tabela';
 import Layout from '../components/templates/Layout';
+import Botao from '../components/templates/Botao';
 import Cliente from '../core/Cliente';
 
 export default function Home() {
@@ -22,6 +23,12 @@ export default function Home() {
     <div className={``}>
       <Layout titulo="Página CRUD" subtitulo="Estamos construindo um CRUD">
         <h1>Cadastro de Clientes</h1>
+        <div className="flex justify-end">
+          <Botao className="mb-2" cor="green">
+            Novo Cliente
+          </Botao>
+        </div>
+
         <Tabela
           clientes={clientes}
           clienteSelecionado={clienteSelecionado}
