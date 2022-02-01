@@ -23,7 +23,11 @@ export default function Tabela(props: TabelaProps) {
         <tr
           key={cliente.id}
           className={`
-          ${i % 2 === 0 ? 'bg-purple-200' : 'bg-purple-100'}
+          ${
+            i % 2 === 0
+              ? 'bg-purple-200 dark:bg-gray-700'
+              : 'bg-purple-100 dark:bg-gray-600'
+          }
         `}
         >
           <td className="text-left p-3">{cliente.id}</td>
@@ -64,8 +68,9 @@ export default function Tabela(props: TabelaProps) {
   return (
     <table className="w-full rounded-xl overflow-hidden">
       <thead
-        className={`text-gray-100
-        bg-gradient-to-r from-purple-500 to-purple-800
+        className={`
+        text-gray-100 bg-gradient-to-r from-purple-500 to-purple-800
+        dark:bg-gradient-to-r dark:from-gray-900 dark:to-gray-900
       `}
       >
         {renderizarCabecalho()}
