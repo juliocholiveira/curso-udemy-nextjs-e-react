@@ -2,6 +2,7 @@ import Tabela from '../components/Tabela';
 import Layout from '../components/templates/Layout';
 import Botao from '../components/templates/Botao';
 import Cliente from '../core/Cliente';
+import Formulario from '../components/Formulario';
 
 export default function Home() {
   const clientes = [
@@ -34,6 +35,8 @@ export default function Home() {
           clienteSelecionado={clienteSelecionado}
           clienteExcluido={clienteExcluido}
         />
+
+        <Formulario cliente={clientes[0]} />
       </Layout>
     </div>
   );
