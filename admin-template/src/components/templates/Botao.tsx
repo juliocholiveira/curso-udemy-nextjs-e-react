@@ -2,6 +2,7 @@ interface BotaoProps {
   children: any;
   cor?: 'purple' | 'green' | 'gray';
   className?: string;
+  onClick?: () => void;
 }
 
 export default function Botao(props: BotaoProps) {
@@ -13,6 +14,7 @@ export default function Botao(props: BotaoProps) {
         text-gray-100 rounded-md px-4 py-2
         ${props.className}
   `}
+      onClick={props.onClick}
     >
       {props.children}
     </button>
