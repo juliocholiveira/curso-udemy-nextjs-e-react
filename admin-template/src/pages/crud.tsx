@@ -3,19 +3,24 @@ import Layout from '../components/templates/Layout';
 import Botao from '../components/templates/Botao';
 import Cliente from '../core/Cliente';
 import Formulario from '../components/Formulario';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import ClienteColecao from '../core/ClienteColecao';
 
 type VisaoType = 'tabela' | 'formulario';
 
 export default function Home() {
+  const repo = new ClienteColecao();
+
   const [cliente, setCliente] = useState<Cliente>(Cliente.vazio());
+  const [clientes, setClientes] = useState<Cliente[]>([]);
   const [visao, setVisao] = useState<VisaoType>('tabela');
-  const clientes = [
-    new Cliente('Júlio', 40, '1'),
-    new Cliente('Janaina', 37, '2'),
-    new Cliente('Miguel', 8, '3'),
-    new Cliente('Otávio', 5, '4'),
-  ];
+
+  const obterTodos = () => {
+    repo.obterTodos().then((clientes) => {
+      setClientes(clientes);
+      setVisao('tabela');
+    });
+  };
 
   const clienteNovo = () => {
     setCliente(Cliente.vazio());
@@ -28,13 +33,16 @@ export default function Home() {
   };
 
   const clienteExcluido = (cliente: Cliente) => {
-    alert(`Exclindo... ${cliente.nome}`);
+    repo.excluir(cliente);
+    obterTodos();
   };
 
   const clienteAlterado = (cliente: Cliente) => {
-    console.log(cliente);
-    setVisao('tabela');
+    repo.salvar(cliente);
+    obterTodos();
   };
+
+  useEffect(obterTodos, []);
 
   return (
     <div className={``}>

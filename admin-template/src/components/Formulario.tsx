@@ -16,7 +16,7 @@ export default function Formulario(props: FormularioProps) {
 
   return (
     <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-xl">
-      {id ? <Entrada texto="id" tipo="number" valor={id} /> : false}
+      {id ? <Entrada texto="id" tipo="text" valor={id} /> : false}
 
       <Entrada
         texto="Nome"
