@@ -8,6 +8,7 @@ import { useState } from 'react';
 type VisaoType = 'tabela' | 'formulario';
 
 export default function Home() {
+  const [cliente, setCliente] = useState<Cliente>(Cliente.vazio());
   const [visao, setVisao] = useState<VisaoType>('tabela');
   const clientes = [
     new Cliente('Júlio', 40, '1'),
@@ -16,8 +17,14 @@ export default function Home() {
     new Cliente('Otávio', 5, '4'),
   ];
 
+  const clienteNovo = () => {
+    setCliente(Cliente.vazio());
+    setVisao('formulario');
+  };
+
   const clienteSelecionado = (cliente: Cliente) => {
-    alert(`Alterando... ${cliente.nome}`);
+    setCliente(cliente);
+    setVisao('formulario');
   };
 
   const clienteExcluido = (cliente: Cliente) => {
@@ -34,11 +41,7 @@ export default function Home() {
       <Layout titulo="Página CRUD" subtitulo="Estamos construindo um CRUD">
         <h1>Cadastro de Clientes</h1>
         <div className="flex justify-end">
-          <Botao
-            className="mb-2"
-            cor="green"
-            onClick={() => setVisao('formulario')}
-          >
+          <Botao className="mb-2" cor="green" onClick={clienteNovo}>
             Novo Cliente
           </Botao>
         </div>
@@ -51,7 +54,7 @@ export default function Home() {
           />
         ) : (
           <Formulario
-            cliente={clientes[0]}
+            cliente={cliente}
             cancelado={() => setVisao('tabela')}
             alterado={clienteAlterado}
           />
