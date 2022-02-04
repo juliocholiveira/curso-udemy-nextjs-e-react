@@ -2,7 +2,7 @@ import Image from 'next/image';
 import router from 'next/router';
 import Head from 'next/head';
 import loading from '../../../public/loading.gif';
-import useAuth from '../../data/hook/useAuth';
+import useAuth from '../../core/Auth/useAuth';
 
 export default function ForcarAutenticacao(props) {
   const { usuario, carregando } = useAuth();

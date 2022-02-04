@@ -1,5 +1,4 @@
-import route from 'next/router';
-import useAuth from '../../data/hook/useAuth';
+import useAuth from '../../core/Auth/useAuth';
 import {
   IconCrud,
   IconHome,

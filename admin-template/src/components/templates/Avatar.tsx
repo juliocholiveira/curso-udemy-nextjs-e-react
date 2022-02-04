@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import useAuth from '../../data/hook/useAuth';
+import useAuth from '../../core/Auth/useAuth';
 
 export default function Avatar() {
   const { usuario } = useAuth();

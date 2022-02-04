@@ -1,8 +1,7 @@
-//import '../styles/globals.css';
 import '../styles/globals.css';
 import 'tailwindcss/tailwind.css';
-import { AppProvider } from '../data/context/AppContext';
-import { AuthProvider } from '../data/context/AuthContext';
+import { AppProvider } from '../core/App/AppContext';
+import { AuthProvider } from '../core/Auth/AuthContext';
 
 function MyApp({ Component, pageProps }) {
   return (

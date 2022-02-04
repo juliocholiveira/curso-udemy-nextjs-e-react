@@ -1,4 +1,4 @@
-import useAppData from '../../data/hook/useAppData';
+import useApp from '../../core/App/useApp';
 import ForcarAutenticacao from '../auth/ForcarAutenticacao';
 import Cabecalho from './Cabecalho';
 import Conteudo from './Conteudo';
@@ -11,7 +11,7 @@ interface LayoutProps {
 }
 
 export default function Layout(props: LayoutProps) {
-  const { tema } = useAppData();
+  const { tema } = useApp();
 
   return (
     <ForcarAutenticacao>

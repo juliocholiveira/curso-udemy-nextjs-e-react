@@ -1,6 +1,6 @@
 import route from 'next/router';
 import { createContext, useEffect, useState } from 'react';
-import Usuario from '../../model/Usuario';
+import Usuario from '../Usuario';
 import firebase from '../../services/firebase';
 import Cookies from 'js-cookie';
 

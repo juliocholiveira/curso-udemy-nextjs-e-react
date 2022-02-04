@@ -1,4 +1,4 @@
-import Cliente from './Cliente';
+import Cliente from './';
 import firebase from 'firebase';
 
 export default class ClienteColecao {
@@ -20,18 +20,17 @@ export default class ClienteColecao {
 
   async salvar(cliente: Cliente): Promise<Cliente> {
     if (cliente?.id) {
-      this.colecao().doc(cliente.id).set(cliente);
+      await this.colecao().doc(cliente.id).set(cliente);
       return cliente;
     } else {
       const docRef = await this.colecao().add(cliente);
       const doc = await docRef.get();
       return doc.data();
     }
-    return null;
   }
 
   async excluir(cliente: Cliente): Promise<void> {
-    return this.colecao().doc(cliente.id).delete();
+    return await this.colecao().doc(cliente.id).delete();
   }
 
   async obterTodos(): Promise<Cliente[]> {

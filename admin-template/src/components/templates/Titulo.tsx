@@ -1,5 +1,3 @@
-import useAppData from '../../data/hook/useAppData';
-
 interface TituloProps {
   titulo: string;
   subtitulo: string;

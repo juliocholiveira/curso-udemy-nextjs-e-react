@@ -1,4 +1,4 @@
-import useAppData from '../../data/hook/useAppData';
+import useApp from '../../core/App/useApp';
 import Avatar from './Avatar';
 import BotaoAlterarTema from './BotaoAlterarTema';
 import Titulo from './Titulo';
@@ -9,7 +9,7 @@ interface CabecalhoProps {
 }
 
 export default function Cabecalho(props: CabecalhoProps) {
-  const { tema, alternarTema } = useAppData();
+  const { tema, alternarTema } = useApp();
   return (
     <div className={`flex`}>
       <Titulo titulo={props.titulo} subtitulo={props.subtitulo} />
