@@ -1,5 +1,6 @@
 import Cliente from './';
 import firebase from 'firebase';
+import { Dispatch, SetStateAction } from 'react';
 
 export default class ClienteColecao {
   #conversor = {
@@ -36,6 +37,12 @@ export default class ClienteColecao {
   async obterTodos(): Promise<Cliente[]> {
     const query = await this.colecao().get();
     return query.docs.map((doc) => doc.data()) ?? [];
+  }
+
+  obterTodosEmTempoReal(altera: (clientes: Cliente[]) => void) {
+    this.colecao().onSnapshot((query) => {
+      altera(query.docs.map((doc) => doc.data()) ?? []);
+    });
   }
 
   private colecao() {

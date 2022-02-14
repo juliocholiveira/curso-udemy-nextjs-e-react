@@ -12,10 +12,17 @@ export default function useCliente() {
   const { exibirFormulario, exibirTabela, visaoTabela } = useFormTable();
 
   const obterTodos = () => {
+    // Obtem todos de uma só vez sem o realtime
+    /*
     repo.obterTodos().then((clientes) => {
       setClientes(clientes);
       exibirTabela();
     });
+    */
+
+    // Obter todos com realtime
+    repo.obterTodosEmTempoReal((clientes) => setClientes(clientes));
+    exibirTabela();
   };
 
   const abrirFormulario = (cliente: Cliente) => {
